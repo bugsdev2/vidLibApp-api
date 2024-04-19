@@ -7,7 +7,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json())
 app.use(cors());
 
-const conStr = "mongodb://127.0.0.1:27017/";
+const conStr = "mongodb+srv://adithyamanikumar:bugs1234@cluster0.wem7prh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 // CREATTING A VARIABLE TO STORE DATABASE
 let db = getDb();
@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
 // GETS ALL USERS
 app.get('/get-users', (req, res) => {
 	db.collection('users').find({}).toArray().then(data => {
+		console.log('Getting Users');
 		res.send(data);
 		res.end();
 	});
@@ -37,6 +38,7 @@ app.get('/get-users', (req, res) => {
 
 // GETS ADMIN DETAILS
 app.get('/get-admin', (req, res) => {
+	console.log('Getting Admin Details');
 	db.collection('admin').find({}).toArray().then(data => {
 		res.send(data[0]);
 		res.end();
@@ -45,6 +47,7 @@ app.get('/get-admin', (req, res) => {
 
 // GETS ALL VIDEOS
 app.get('/get-videos', (req, res) => {
+	console.log('Getting All Videos');
 	db.collection('videos').find({}).toArray().then(data => {
 		res.send(data);
 		res.end();
@@ -69,8 +72,11 @@ app.get('/categories', (req, res) => {
 })
 
 app.post('/add-video', (req, res) => {
-	const URL = req.body.url
-// https://www.youtube.com/watch?v=LKkzh1pXnHk
-// https://www.youtube.com/embed/LKkzh1pXnHk?si=m_zrbtgQx_H2eI3l
+	const URL = req.body.url.slice(url.indexOf("v=")+2)
+	let vidDetails = {
+		videoCode: URL
+	}
+	db.collection('videos').insertOne(vidDetails)
 })
+
 
