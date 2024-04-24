@@ -36,6 +36,26 @@ app.get('/get-users', (req, res) => {
 	});
 })
 
+// ADDS A NEW USER
+app.post('/add-user/', (req, res) => {
+	const user = {
+		fullname: req.body.fullname,
+		email: req.body.email,
+		username: req.body.username,
+		password: req.body.password
+	}
+	db.collection('users').insertOne(user);
+})
+
+// CHECKS TO SEE IF USERNAME IS TAKEN
+app.get('/check-user/:username', (req, res) => {
+	db.collection('users').find({username: req.params.username}).toArray().then((data) => {
+		res.send(data);
+		res.end();
+		console.log('Action Done!');
+	});
+})
+ 
 // GETS ADMIN DETAILS
 app.get('/get-admin', (req, res) => {
 	console.log('Getting Admin Details');
