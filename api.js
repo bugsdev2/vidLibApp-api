@@ -42,18 +42,18 @@ app.post('/add-user/', (req, res) => {
 		fullname: req.body.fullname,
 		email: req.body.email,
 		username: req.body.username,
-		password: req.body.password
+		password: req.body.password,
 	}
 	db.collection('users').insertOne(user);
+	res.end();
 })
 
-// CHECKS TO SEE IF USERNAME IS TAKEN
+// CHECKS TO SEE IF USERNAME IS ALREADY TAKEN
 app.get('/check-user/:username', (req, res) => {
-	db.collection('users').find({username: req.params.username}).toArray().then((data) => {
-		res.send(data);
+	db.collection('users').find({username: req.params.username}).toArray().then(data => {
+		res.send(data[0]);
 		res.end();
-		console.log('Action Done!');
-	});
+	})
 })
  
 // GETS ADMIN DETAILS
@@ -77,7 +77,7 @@ app.get('/get-videos', (req, res) => {
 // GETS A PARTICULAR VIDEO ACCORDING TO ID
 app.get('/get-video/:id', (req, res) => {
 	const id = parseInt(req.params.id);
-	db.collection('videos').find({id: id}).toArray().then(data => {
+	db.collection('videos').find({id}).toArray().then(data => {
 		res.send(data[0]);
 		res.end();
 	});
