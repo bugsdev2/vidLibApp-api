@@ -94,6 +94,9 @@ app.get('/categories', (req, res) => {
 app.post('/add-video', (req, res) => {
 	const URL = req.body.url.slice(url.indexOf("v=")+2)
 	let vidDetails = {
+	    title: req.body.title,
+	    description: req.body.description,
+	    category: req.body.category,
 		videoCode: URL
 	}
 	db.collection('videos').insertOne(vidDetails)
