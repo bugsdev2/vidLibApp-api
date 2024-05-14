@@ -91,6 +91,28 @@ app.get('/categories', (req, res) => {
 	});
 })
 
+app.post('/add-category', (req, res) => {
+    let count = 1;
+    let categoryId;
+    db.collection('categories').find({}).toArray().then(data => {
+       function checkIfExists(count){
+            if(data.find(item => item.id === count)){
+                return checkIfExists(count+1);            
+            } else {
+                return count;
+            }
+        }
+        categoryId = checkIfExists(count)
+    })
+    
+    const category = res.body.new_category.toLowerCase().replaceAll(' ', '');
+    const newCategory = {
+        id: categoryId,
+        category,
+        name: res.body.new_category
+    }
+})
+
 app.post('/add-video', (req, res) => {
 	const URL = req.body.url.slice(url.indexOf("v=")+2)
 	let vidDetails = {
