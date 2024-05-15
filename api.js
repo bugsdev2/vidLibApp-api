@@ -111,6 +111,9 @@ app.post('/add-category', (req, res) => {
         category,
         name: res.body.new_category
     }
+    db.collection('categories').insertOne(newCategory).then(() => {
+        console.log('New Category Added')
+    })
 })
 
 app.post('/add-video', (req, res) => {
