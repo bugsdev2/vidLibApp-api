@@ -105,7 +105,7 @@ app.post('/add-category', (req, res) => {
         categoryId = checkIfExists(count)
     })
     
-    const category = res.body.new_category.toLowerCase().replaceAll(' ', '');
+    const category = req.body.new_category.toLowerCase().replaceAll(' ', '');
     const newCategory = {
         id: categoryId,
         category,
