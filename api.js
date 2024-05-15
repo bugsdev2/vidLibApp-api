@@ -92,9 +92,11 @@ app.get('/categories', (req, res) => {
 })
 
 app.post('/add-category', (req, res) => {
-    let count = 1;
-    let categoryId;
+    
     db.collection('categories').find({}).toArray().then(data => {
+        let count = 1;
+        let categoryId;
+        
        function checkIfExists(count){
             if(data.find(item => item.id === count)){
                 return checkIfExists(count+1);            
@@ -102,18 +104,23 @@ app.post('/add-category', (req, res) => {
                 return count;
             }
         }
+        
         categoryId = checkIfExists(count)
+        
+        const category = req.body.new_category.toLowerCase().replaceAll(' ', '');
+        
+        const newCategory = {
+            id: categoryId,
+            category,
+            name: req.body.new_category
+        }
+        
+        db.collection('categories').insertOne(newCategory).then(() => {
+            console.log('New Category Added')
+        })
     })
     
-    const category = req.body.new_category.toLowerCase().replaceAll(' ', '');
-    const newCategory = {
-        id: categoryId,
-        category,
-        name: req.body.new_category
-    }
-    db.collection('categories').insertOne(newCategory).then(() => {
-        console.log('New Category Added')
-    })
+    
 })
 
 app.post('/add-video', (req, res) => {
