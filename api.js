@@ -109,7 +109,7 @@ app.post('/add-category', (req, res) => {
     const newCategory = {
         id: categoryId,
         category,
-        name: res.body.new_category
+        name: req.body.new_category
     }
     db.collection('categories').insertOne(newCategory).then(() => {
         console.log('New Category Added')
