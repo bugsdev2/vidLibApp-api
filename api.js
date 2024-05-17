@@ -58,8 +58,8 @@ app.get('/check-user/:username', (req, res) => {
  
 // GETS ADMIN DETAILS
 app.get('/get-admin', (req, res) => {
-	console.log('Getting Admin Details');
 	db.collection('admin').find({}).toArray().then(data => {
+	    console.log('Getting Admin Details');
 		res.send(data[0]);
 		res.end();
 	});
@@ -67,8 +67,8 @@ app.get('/get-admin', (req, res) => {
 
 // GETS ALL VIDEOS
 app.get('/get-videos', (req, res) => {
-	console.log('Getting All Videos');
 	db.collection('videos').find({}).toArray().then(data => {
+	    console.log('Getting All Videos');
 		res.send(data);
 		res.end();
 	});
@@ -131,7 +131,9 @@ app.post('/add-video', (req, res) => {
 	    category: req.body.category,
 		videoCode: URL
 	}
-	db.collection('videos').insertOne(vidDetails)
+	db.collection('videos').insertOne(vidDetails).then(() => {
+	    console.log('New Video Added')
+	})
 })
 
 
