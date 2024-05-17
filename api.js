@@ -120,7 +120,7 @@ app.post('/add-category', (req, res) => {
         })
     })
     
-    
+    res.end();
 })
 
 app.post('/add-video', (req, res) => {
@@ -134,6 +134,7 @@ app.post('/add-video', (req, res) => {
 	db.collection('videos').insertOne(vidDetails).then(() => {
 	    console.log('New Video Added')
 	})
+	res.end()
 })
 
 
