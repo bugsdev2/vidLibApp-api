@@ -66,12 +66,21 @@ app.get('/get-admin', (req, res) => {
 })
 
 // GETS ALL VIDEOS
-app.get('/get-videos', (req, res) => {
-	db.collection('videos').find({}).toArray().then(data => {
-		console.log('GETTING ALL VIDEOS');
-		res.send(data);
-		res.end();
-	});
+app.get('/get-videos/:category', (req, res) => {
+    let category = req.params.category;
+    if(category === 'all'){
+        db.collection('videos').find({}).toArray().then(data => {
+		    console.log('GETTING ALL VIDEOS');
+		    res.send(data);
+		    res.end();
+	    });
+    } else {
+        db.collection('videos').find({category}).toArray().then(data => {
+            res.send(data);
+            res.end();
+        })
+    }
+	
 })
 
 // GETS A PARTICULAR VIDEO ACCORDING TO ID
