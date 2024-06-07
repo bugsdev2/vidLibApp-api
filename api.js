@@ -142,17 +142,34 @@ app.post('/add-category', (req, res) => {
 })
 
 app.post('/add-video', (req, res) => {
-	const URL = req.body.url.slice(req.body.url.indexOf("v=")+2)
-	let vidDetails = {
-	    title: req.body.title,
-	    description: req.body.description,
-	    category: req.body.category,
-		videoCode: URL
-	}
-	db.collection('videos').insertOne(vidDetails).then(() => {
-	    console.log('New Video Added');
-	})
-	res.end()
+    db.collections('videos').find({}).toArray().then(data => {
+        let count = 1;
+        let videoId;
+        
+       function checkIfExists(count){
+            if(data.find(item => item.id === count)){
+                return checkIfExists(count+1);            
+            } else {
+                return count;
+            }
+        }
+        
+        videoId = checkIfExists(count)
+        
+        const URL = req.body.url.slice(req.body.url.indexOf("v=")+2)
+	    let vidDetails = {
+	        id: videoId,
+	        title: req.body.title,
+	        description: req.body.description,
+	        category: req.body.category,
+		    videoCode: URL
+	    }
+	    db.collection('videos').insertOne(vidDetails).then(() => {
+	        console.log('New Video Added');
+	    })
+	    res.end()
+    })
+	
 })
 
 
