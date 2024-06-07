@@ -78,10 +78,18 @@ app.get('/get-videos', (req, res) => {
 app.get('/get-video/:id', (req, res) => {
 	const id = parseInt(req.params.id);
 	db.collection('videos').find({id}).toArray().then(data => {
-	console.log('GETTING REQUESTED VIDEO')
+	console.log('GETTING REQUESTED VIDEO');
 		res.send(data[0]);
 		res.end();
 	});
+})
+
+app.delete('/delete-video/:id', (req, res) => {
+    const id = req.params.id;
+    db.collection('videos').deleteOne({"_id": id}).then(() => {
+        console.log('DELETED ONE VIDEO');
+        res.end();
+    })
 })
 
 // GETS ALL THE CATEGORIES
@@ -133,7 +141,7 @@ app.post('/add-video', (req, res) => {
 		videoCode: URL
 	}
 	db.collection('videos').insertOne(vidDetails).then(() => {
-	    console.log('New Video Added')
+	    console.log('New Video Added');
 	})
 	res.end()
 })
