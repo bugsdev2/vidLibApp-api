@@ -30,7 +30,6 @@ app.get('/', (req, res) => {
 // GETS ALL USERS
 app.get('/get-users', (req, res) => {
 	db.collection('users').find({}).toArray().then(data => {
-		console.log('Getting Users');
 		res.send(data);
 		res.end();
 	});
@@ -59,7 +58,6 @@ app.get('/check-user/:username', (req, res) => {
 // GETS ADMIN DETAILS
 app.get('/get-admin', (req, res) => {
 	db.collection('admin').find({}).toArray().then(data => {
-		console.log('GETTING ADMIN DETAILS');
 		res.send(data[0]);
 		res.end();
 	});
@@ -70,7 +68,6 @@ app.get('/get-videos/:category', (req, res) => {
     let category = req.params.category;
     if(category === 'all'){
         db.collection('videos').find({}).toArray().then(data => {
-		    console.log('GETTING ALL VIDEOS');
 		    res.send(data);
 		    res.end();
 	    });
@@ -87,7 +84,6 @@ app.get('/get-videos/:category', (req, res) => {
 app.get('/get-video/:id', (req, res) => {
 	const id = parseInt(req.params.id);
 	db.collection('videos').find({id}).toArray().then(data => {
-	console.log('GETTING REQUESTED VIDEO');
 		res.send(data[0]);
 		res.end();
 	});
@@ -96,7 +92,6 @@ app.get('/get-video/:id', (req, res) => {
 app.delete('/delete-video/:id', (req, res) => {
     const id = parseInt(req.params.id);
     db.collection('videos').deleteOne({id: id}).then(() => {
-        console.log('DELETED ONE VIDEO');
         res.end();
     })
 })
