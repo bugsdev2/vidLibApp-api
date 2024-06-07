@@ -95,7 +95,7 @@ app.get('/get-video/:id', (req, res) => {
 
 app.delete('/delete-video/:id', (req, res) => {
     const id = req.params.id;
-    db.collection('videos').deleteOne({"_id": {"$oid": id}}).then(() => {
+    db.collection('videos').deleteOne({id: id}).then(() => {
         console.log('DELETED ONE VIDEO');
         res.end();
     })
@@ -142,7 +142,7 @@ app.post('/add-category', (req, res) => {
 })
 
 app.post('/add-video', (req, res) => {
-    db.collections('videos').find({}).toArray().then(data => {
+    db.collection('videos').find({}).toArray().then(data => {
         let count = 1;
         let videoId;
         
