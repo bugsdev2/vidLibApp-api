@@ -94,7 +94,7 @@ app.get('/get-video/:id', (req, res) => {
 })
 
 app.delete('/delete-video/:id', (req, res) => {
-    const id = req.params.id;
+    const id = parseInt(req.params.id);
     db.collection('videos').deleteOne({id: id}).then(() => {
         console.log('DELETED ONE VIDEO');
         res.end();
