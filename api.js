@@ -59,7 +59,7 @@ app.get('/check-user/:username', (req, res) => {
 // GETS ADMIN DETAILS
 app.get('/get-admin', (req, res) => {
 	db.collection('admin').find({}).toArray().then(data => {
-	    console.log('Getting Admin Details');
+		console.log('GETTING ADMIN DETAILS');
 		res.send(data[0]);
 		res.end();
 	});
@@ -68,7 +68,7 @@ app.get('/get-admin', (req, res) => {
 // GETS ALL VIDEOS
 app.get('/get-videos', (req, res) => {
 	db.collection('videos').find({}).toArray().then(data => {
-	    console.log('Getting All Videos');
+		console.log('GETTING ALL VIDEOS');
 		res.send(data);
 		res.end();
 	});
@@ -78,6 +78,7 @@ app.get('/get-videos', (req, res) => {
 app.get('/get-video/:id', (req, res) => {
 	const id = parseInt(req.params.id);
 	db.collection('videos').find({id}).toArray().then(data => {
+	console.log('GETTING REQUESTED VIDEO')
 		res.send(data[0]);
 		res.end();
 	});

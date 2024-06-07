@@ -27,11 +27,19 @@ long_line_behaviour=1
 long_line_column=72
 
 [files]
-current_page=0
-FILE_NAME_0=1357;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2FProjects%2FvidLibApp-api%2Fapi.js;0;4
+current_page=8
+FILE_NAME_0=166;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2Flearn2code%2FJS%2FDSA%2Ffibonacci.js;0;4
+FILE_NAME_1=233;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2Flearn2code%2FJS%2FDSA%2FpowerOfTwo.js;0;4
+FILE_NAME_2=233;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2Flearn2code%2FJS%2FDSA%2FrecursiveFibonacci.js;0;4
+FILE_NAME_3=148;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2Flearn2code%2FJS%2FDSA%2Ffactorial.js;0;4
+FILE_NAME_4=251;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2Flearn2code%2FJS%2FDSA%2FrecursiveFactorial.js;0;4
+FILE_NAME_5=0;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2Flearn2code%2FJS%2FDSA%2FlinearSearch.js;0;4
+FILE_NAME_6=406;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2Flearn2code%2FJS%2FDSA%2FbinarySearch.js;0;4
+FILE_NAME_7=0;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2Flearn2code%2FJS%2FDSA%2FrecursiveBinarySearch.js;0;4
+FILE_NAME_8=25;Javascript;0;EUTF-8;1;1;0;%2Fhome%2Fbugs%2Flearn2code%2FJS%2FDSA%2FbubbleSort.js;0;4
 
 [VTE]
-last_dir=/home/bugs/Projects/vidLibApp-api
+last_dir=/home/bugs/learn2code/JS/DSA
 
 [prjorg]
 source_patterns=*.c;*.C;*.cpp;*.cxx;*.c++;*.cc;*.m;
