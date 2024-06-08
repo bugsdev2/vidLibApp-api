@@ -151,7 +151,8 @@ app.post('/add-video', (req, res) => {
         
         videoId = checkIfExists(count)
         let URL;
-        req.body.url.contains('&') ? URL = req.body.url.slice(req.body.url.indexOf("v=")+2, req.body.url.indexOf("&")) : URL = req.body.url.slice(req.body.url.indexOf("v=")+2)
+        let temp = req.body.url;
+        temp.contains('&') ? URL = req.body.url.slice(req.body.url.indexOf("v=")+2, req.body.url.indexOf("&")) : URL = req.body.url.slice(req.body.url.indexOf("v=")+2)
         
 	    let vidDetails = {
 	        id: videoId,
