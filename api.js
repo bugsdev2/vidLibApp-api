@@ -69,13 +69,15 @@ app.get('/get-videos/:category', (req, res) => {
     if(category === 'all'){
         db.collection('videos').find({}).toArray().then(data => {
 		    res.send(data);
+		    res.end();
 	    });
     } else {
         db.collection('videos').find({category}).toArray().then(data => {
             res.send(data);
+            res.end();
         })
     }
-	res.end();
+	
 })
 
 // GETS A PARTICULAR VIDEO ACCORDING TO ID
