@@ -67,10 +67,10 @@ app.get('/get-admin', (req, res) => {
 app.get('/get-videos/:category', (req, res) => {
     let category = req.params.category;
     if(category === 'all'){
-        db.collection('videos').find({}).toArray().then(data => {
-		    res.send(data);
-		    res.end();
-	    });
+        db.collection('videos').find().toArray().then(data => {
+	    res.send(data);
+	    res.end();
+	});
     } else {
         db.collection('videos').find({category}).toArray().then(data => {
             res.send(data);
